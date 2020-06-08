@@ -2,7 +2,7 @@
   <div id="app" :class="weather.temp > 20 ? 'warm' : ''">
     <main>
       <div class="search-box">
-        <input type="text" class="search-bar" placeholder="Search..." v-model="query" v-on:keyup.enter="getWeather">
+        <input type="text" class="search-bar" placeholder="Entrer une ville pour avoir sa météo..." v-model="query" v-on:keyup.enter="getWeather">
       </div>
       <div class="weather-wrap">
         <div class="location-box">
@@ -10,7 +10,7 @@
           <div class="date">{{ date }}</div>
         </div>
         <div class="weather-box">
-          <div class="temp">{{ weather.temp }}</div>
+          <div class="temp">{{ weather.temp }} °C</div>
           <div class="weather">{{ weather.weather }}</div>
         </div>
       </div>
@@ -26,13 +26,16 @@ export default {
     return{
       api_key: 'd578d6888b57e79f878b7d5bf8517065',
       url_base: 'api.openweathermap.org/data/2.5/',
-      query: '',
+      query: 'Paris',
       date: '',
       weather: {
         temp: '',
         weather: ''
       }
     }
+  },
+  mounted(){
+    this.getWeather()
   },
   methods:{
     getWeather: function(){
